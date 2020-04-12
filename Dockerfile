@@ -21,7 +21,7 @@ COPY index.php /usr/share/nginx/html/
 RUN chmod 1775 /usr/share/nginx/html/ && chgrp -R www-data /usr/share/nginx/html/ && chown -R www-data /usr/share/nginx/html/*
 
 # Create aliases to restart the services
-RUN echo -e "alias restart-php=\"pkill php-fpm7; php-fpm7 && echo php-fpm restarted\"\nalias restart-nginx=\"nginx -s reload\"" >> ~/.profile
+RUN echo -e "alias restart-php=\"pkill php-fpm7; php-fpm7 && echo php-fpm restarted\"\nalias restart-nginx=\"nginx -s reload\"" >> ~/.profile && source ~/.profile
 
 EXPOSE 80
 
