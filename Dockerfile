@@ -6,7 +6,7 @@ RUN apk add ca-certificates curl
 RUN curl https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub -o /etc/apk/keys/php-alpine.rsa.pub
 
 # add the repo for the php version
-RUN echo "https://dl.bintray.com/php-alpine/v3.9/php-7.4" >> /etc/apk/repositories && apk update
+RUN echo "https://dl.bintray.com/php-alpine/v3.8/php-7.2" >> /etc/apk/repositories && apk update
 
 RUN apk add php7 php7-fpm \
   php7-opcache php7-mysqli php7-gd \
