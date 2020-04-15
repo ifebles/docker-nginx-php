@@ -1,8 +1,18 @@
 FROM nginx:1.15.8-alpine
 
-RUN apk add curl php7 php7-fpm php7-opcache php7-mysqli php7-gd php7-zlib php7-curl;
+RUN apk add ca-certificates curl
 
-RUN addgroup www-data && adduser -s /sbin/nologin -G www-data -DH www-data;
+# Download de repo public key
+RUN curl https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub -o /etc/apk/keys/php-alpine.rsa.pub
+
+# add the repo for the php version
+RUN echo "https://dl.bintray.com/php-alpine/v3.9/php-7.4" >> /etc/apk/repositories && apk update
+
+RUN apk add php7 php7-fpm \
+  php7-opcache php7-mysqli php7-gd \
+  php7-zlib php7-curl
+
+RUN addgroup www-data && adduser -s /sbin/nologin -G www-data -DH www-data
 
 RUN mkdir /etc/nginx/tmp /etc/nginx/custom-conf
 
